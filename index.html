@@ -40,7 +40,7 @@
 <script>
     document.querySelectorAll("button").forEach(bb=>{
       bb.onclick=(e)=>{
-         let url=e.parentNode.querySelector("a").href;
+         let url=bb.parentNode.querySelector("a").href;
           showPDF(url);
       };
     });
