@@ -38,16 +38,18 @@
     <img src="CqyUq8.png" />
 
 <script>
+    document.querySelectorAll("button").forEach(bb=>{
+      bb.onclick=(e)=>{
+         let url=e.parentNode.querySelector("a").href;
+          showPDF(url);
+      };
+    });
     let currentPage = 0;
     let subPages = [];
 
     const canvas = document.getElementById("zineCanvas");
     const ctx = canvas.getContext("2d");
-    document.querySelectorAll("button").forEach(bb=>{
-      bb.onclick=(e)=>{
-         let url=e.parentNode.querySelector("a").href;
-      };
-    });
+    
     async function showPDF(url){
 
       const pdf = await pdfjsLib.getDocument(url).promise;
