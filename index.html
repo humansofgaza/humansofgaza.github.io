@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
     <meta charset="UTF-8">
     <title>Humans of Gaza</title>
     <style>
@@ -19,12 +20,113 @@
             color: #555;
         }
     </style>
+    
 </head>
 <body>
     <h1>Humans of Gaza</h1>
     <h2>Zines</h2>
-    <a href="Gaza (single page foldable 8 part booklet).pdf">How Can I Help the Humans of Gaza?</a>
+    <span><a href="Gaza (single page foldable 8 part booklet).pdf">How Can I Help the Humans of Gaza?</a><button class="pdf">Preview</button></span>
+    <div id="preview" style="display: none;">
+    <div id="nav" style="display: block;">
+    <button onclick="prevPage()">◀ Prev</button>
+    <span id="pageInfo">Page 1 / 8</span>
+    <button onclick="nextPage()">Next ▶</button>
+    </div>
+<canvas id="zineCanvas" width="396" height="612"></canvas>
+    </div>
     <h2>How to fold an 8 page Zine</h2>
     <img src="CqyUq8.png" />
+
+<script>
+    let currentPage = 0;
+    let subPages = [];
+
+    const canvas = document.getElementById("zineCanvas");
+    const ctx = canvas.getContext("2d");
+    document.querySelectorAll("button").forEach(bb=>{
+      bb.onclick=(e)=>{
+         let url=e.parentNode.querySelector("a").href;
+      };
+    });
+    async function showPDF(url){
+
+      const pdf = await pdfjsLib.getDocument(url).promise;
+      const page = await pdf.getPage(1);
+
+      const viewport = page.getViewport({ scale: 2 });
+      const tempCanvas = document.createElement("canvas");
+      const tempCtx = tempCanvas.getContext("2d");
+      tempCanvas.width = viewport.width;
+      tempCanvas.height = viewport.height;
+
+      await page.render({ canvasContext: tempCtx, viewport }).promise;
+
+      // Define regions (2 rows × 4 columns)
+      const w = tempCanvas.width / 4;
+      const h = tempCanvas.height / 2;
+
+      // Coordinates of 8 subpages in the order to view
+      const layout = [
+        { x: 3*w, y: h, rotate: 0   }, // Page 1
+        { x: 3*w, y: 0, rotate: 180 }, // Page 2
+        { x: 2*w, y: 0, rotate: 180 }, // Page 3
+        { x: w,   y: 0, rotate: 180 }, // Page 4
+        { x: 0,   y: 0, rotate: 180 }, // Page 5
+        { x: 0,   y: h, rotate: 0   }, // Page 6
+        { x: w,   y: h, rotate: 0   }, // Page 7
+        { x: 2*w, y: h, rotate: 0   }, // Page 8
+      ];
+
+      // Slice and store subpages
+      subPages = layout.map(({ x, y, rotate }) => {
+        const sub = document.createElement("canvas");
+        sub.width = w;
+        sub.height = h;
+        const subCtx = sub.getContext("2d");
+
+        subCtx.drawImage(tempCanvas, x, y, w, h, 0, 0, w, h);
+
+        // Rotate if needed
+        if (rotate !== 0) {
+          const rotated = document.createElement("canvas");
+          rotated.width = w;
+          rotated.height = h;
+          const rCtx = rotated.getContext("2d");
+          rCtx.translate(w / 2, h / 2);
+          rCtx.rotate(rotate * Math.PI / 180);
+          rCtx.drawImage(sub, -w / 2, -h / 2);
+          return rotated;
+        }
+        return sub;
+      });
+
+      currentPage = 0;
+      document.getElementById("preview").style.display = "block";
+      renderPage();
+    });
+
+    function renderPage() {
+      const img = subPages[currentPage];
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0);
+      document.getElementById("pageInfo").textContent = `Page ${currentPage + 1} / ${subPages.length}`;
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        renderPage();
+      }
+    }
+
+    function nextPage() {
+      if (currentPage < subPages.length - 1) {
+        currentPage++;
+        renderPage();
+      }
+    }
+  </script>
 </body>
 </html>
