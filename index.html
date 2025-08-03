@@ -25,7 +25,9 @@
 <body>
     <h1>Humans of Gaza</h1>
     <h2>Zines</h2>
-    <span><a href="Gaza (single page foldable 8 part booklet).pdf">How Can I Help the Humans of Gaza?</a><button class="pdf">Preview</button></span>
+    <span><a href="Gaza (single page foldable 8 part booklet).pdf">How Can I Help the Humans of Gaza?</a><button class="pdf">Preview Zine</button></span>
+    <span><a href="Wait are we doing a genocide.pdf">Wait... are we doing a genocide in Gaza?</a><button class="pdf">Preview Zine</button></span>
+    
     <div id="preview" style="display: none;">
     <div id="nav" style="display: block;">
     <button onclick="prevPage()">◀ Prev</button>
@@ -36,8 +38,31 @@
     </div>
     <h2>How to fold an 8 page Zine</h2>
     <img src="CqyUq8.png" />
+    <div>
+    <h2>Genocide reports and statements (who says it's a genocide?)</h2>
+       <ul>
+           <li><a href="https://www.btselem.org/publications/202507_our_genocide">B'Tsalem (Israeli human rights group)</a></li>
+           <li><a href="https://www.amnesty.org/en/latest/news/2024/12/amnesty-international-concludes-israel-is-committing-genocide-against-palestinians-in-gaza/">Amnesty International</a></li>
+           <li><a href="https://www.hrw.org/news/2024/12/19/israels-crime-extermination-acts-genocide-gaza">Human Rights Watch</a></li>
+           <li><a href="https://www.un.org/unispal/document/a-hrc-59-23-from-economy-of-occupation-to-economy-of-genocide-report-special-rapporteur-francesca-albanese-palestine-2025/">UN Special Rapporteur</a></li>
+           <li><a href="https://www.youtube.com/watch?v=jyrbMOFJK34">Avi Shlaim, Israeli Historian</a></li>
+           <li><a href="https://web.archive.org/web/20250731173804/https://www.nytimes.com/2025/07/15/opinion/israel-gaza-holocaust-genocide-palestinians.html">Omer Bartov, Holocaust Scholar</a></li>
+           <li><a href="https://www.hrw.org/news/2024/01/26/gaza-world-court-orders-israel-prevent-genocide">International Court of Justice (ICJ, plausible genocide)</a></li>
+           <li><a href="https://www.phr.org.il/en/">Physicians for Human Rights (Israeli human rights group)</a></li>
+           <li><a href="https://www.prospectmagazine.co.uk/views/people/69831/ilan-pappe-in-a-genocide-there-are-no-two-sides">Ilan Pappé, Israeli Historian</a></li>
+           <li>Many many others</li>
+       </ul>    
+        
+    </div>
 
 <script>
+//TODO:
+    document.querySelectorAll("button.html").forEach(bb=>{
+      bb.onclick=(e)=>{
+         let url=bb.parentNode.querySelector("a").href;
+          showWeb(url);
+      };
+    });
     document.querySelectorAll("button.pdf").forEach(bb=>{
       bb.onclick=(e)=>{
          let url=bb.parentNode.querySelector("a").href;
