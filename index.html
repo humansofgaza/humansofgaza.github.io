@@ -1,62 +1,221 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Humans of Gaza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background-color: #f0f0f0;
+        :root {
+            --primary-color: #333;
+            --secondary-color: #555;
+            --background-color: #f4f4f9;
+            --accent-color: #007BFF;
+            --border-color: #ddd;
+            --button-bg: #e2e2e2;
+            --button-hover: #ccc;
         }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
         h1 {
             font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: var(--secondary-color);
+            margin-top: 40px;
             margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
         }
+
         p {
-            font-size: 1.5em;
-            color: #555;
+            font-size: 1.2em;
+            color: var(--secondary-color);
         }
+
+        .zine-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+
+        .zine-item a {
+            font-size: 1.2em;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .zine-item a:hover {
+            color: #0056b3;
+        }
+
+        .zine-item button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: var(--primary-color);
+            background-color: var(--button-bg);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .zine-item button:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-2px);
+        }
+
+        #preview {
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: none;
+        }
+
+        #nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        #nav button {
+            padding: 8px 15px;
+            font-size: 1em;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #nav button:hover {
+            background-color: #0056b3;
+        }
+
+        #pageInfo {
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        #zineCanvas {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+        }
+
+        .folding-img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+        
+        .reports-list {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+        
+        .reports-list li {
+            margin-bottom: 10px;
+        }
+        
+        .reports-list li a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .reports-list li a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
     </style>
     
 </head>
 <body>
-    <h1>Humans of Gaza</h1>
-    <h2>Zines</h2>
-    <span><a href="Gaza (single page foldable 8 part booklet).pdf">How Can I Help the Humans of Gaza?</a><button class="pdf">Preview Zine</button></span>
-    <span><a href="Wait are we doing a genocide.pdf">Wait... are we doing a genocide in Gaza?</a><button class="pdf">Preview Zine</button></span>
-    
-    <div id="preview" style="display: none;">
-    <div id="nav" style="display: block;">
-    <button onclick="prevPage()">◀ Prev</button>
-    <span id="pageInfo">Page 1 / 8</span>
-    <button onclick="nextPage()">Next ▶</button>
-    </div>
-<canvas id="zineCanvas" width="396" height="612"></canvas>
-    </div>
-    <h2>How to fold an 8 page Zine</h2>
-    <img src="CqyUq8.png" />
-    <div>
-    <h2>Genocide reports and statements (who says it's a genocide?)</h2>
-       <ul>
-           <li><a href="https://www.btselem.org/publications/202507_our_genocide">B'Tsalem (Israeli human rights group)</a></li>
-           <li><a href="https://www.amnesty.org/en/latest/news/2024/12/amnesty-international-concludes-israel-is-committing-genocide-against-palestinians-in-gaza/">Amnesty International</a></li>
-           <li><a href="https://www.hrw.org/news/2024/12/19/israels-crime-extermination-acts-genocide-gaza">Human Rights Watch</a></li>
-           <li><a href="https://www.un.org/unispal/document/a-hrc-59-23-from-economy-of-occupation-to-economy-of-genocide-report-special-rapporteur-francesca-albanese-palestine-2025/">UN Special Rapporteur</a></li>
-           <li><a href="https://www.youtube.com/watch?v=jyrbMOFJK34">Avi Shlaim, Israeli Historian</a></li>
-           <li><a href="https://web.archive.org/web/20250731173804/https://www.nytimes.com/2025/07/15/opinion/israel-gaza-holocaust-genocide-palestinians.html">Omer Bartov, Holocaust Scholar</a></li>
-           <li><a href="https://www.hrw.org/news/2024/01/26/gaza-world-court-orders-israel-prevent-genocide">International Court of Justice (ICJ, plausible genocide)</a></li>
-           <li><a href="https://www.phr.org.il/en/">Physicians for Human Rights (Israeli human rights group)</a></li>
-           <li><a href="https://www.prospectmagazine.co.uk/views/people/69831/ilan-pappe-in-a-genocide-there-are-no-two-sides">Ilan Pappé, Israeli Historian</a></li>
-           <li>Many many others</li>
-       </ul>    
+    <div class="container">
+        <h1>Humans of Gaza</h1>
+        <h2>Zines</h2>
+        <div class="zine-item">
+            <a href="Gaza (single page foldable 8 part booklet).pdf">How Can I Help the Humans of Gaza?</a>
+            <button class="pdf">Preview Zine</button>
+        </div>
+        <div class="zine-item">
+            <a href="Wait are we doing a genocide.pdf">Wait... are we doing a genocide in Gaza?</a>
+            <button class="pdf">Preview Zine</button>
+        </div>
         
+        <div id="preview" style="display: none;">
+            <div id="nav">
+                <button onclick="prevPage()">◀ Prev</button>
+                <span id="pageInfo">Page 1 / 8</span>
+                <button onclick="nextPage()">Next ▶</button>
+            </div>
+            <canvas id="zineCanvas" width="396" height="612"></canvas>
+        </div>
+
+        <h2>How to fold an 8 page Zine</h2>
+        <img class="folding-img" src="CqyUq8.png" alt="Diagram showing how to fold an 8 page zine" />
+        
+        <h2>Genocide reports and statements (who says it's a genocide?)</h2>
+        <ul class="reports-list">
+            <li><a href="https://www.btselem.org/publications/202507_our_genocide">B'Tsalem (Israeli human rights group)</a></li>
+            <li><a href="https://www.amnesty.org/en/latest/news/2024/12/amnesty-international-concludes-israel-is-committing-genocide-against-palestinians-in-gaza/">Amnesty International</a></li>
+            <li><a href="https://www.hrw.org/news/2024/12/19/israels-crime-extermination-acts-genocide-gaza">Human Rights Watch</a></li>
+            <li><a href="https://www.un.org/unispal/document/a-hrc-59-23-from-economy-of-occupation-to-economy-of-genocide-report-special-rapporteur-francesca-albanese-palestine-2025/">UN Special Rapporteur</a></li>
+            <li><a href="https://www.youtube.com/watch?v=jyrbMOFJK34">Avi Shlaim, Israeli Historian</a></li>
+            <li><a href="https://web.archive.org/web/20250731173804/https://www.nytimes.com/2025/07/15/opinion/israel-gaza-holocaust-genocide-palestinians.html">Omer Bartov, Holocaust Scholar</a></li>
+            <li><a href="https://www.hrw.org/news/2024/01/26/gaza-world-court-orders-israel-prevent-genocide">International Court of Justice (ICJ, plausible genocide)</a></li>
+            <li><a href="https://www.phr.org.il/en/">Physicians for Human Rights (Israeli human rights group)</a></li>
+            <li><a href="https://www.prospectmagazine.co.uk/views/people/69831/ilan-pappe-in-a-genocide-there-are-no-two-sides">Ilan Pappé, Israeli Historian</a></li>
+            <li>Many many others</li>
+        </ul>    
     </div>
 
 <script>
-//TODO:
     document.querySelectorAll("button.html").forEach(bb=>{
       bb.onclick=(e)=>{
          let url=bb.parentNode.querySelector("a").href;
@@ -157,3 +316,4 @@
   </script>
 </body>
 </html>
+```
