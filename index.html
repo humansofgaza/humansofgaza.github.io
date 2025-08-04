@@ -170,7 +170,41 @@
             color: #0056b3;
             text-decoration: underline;
         }
+.action-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 40px;
+}
 
+.action-card {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s ease;
+    text-align: left;
+}
+
+.action-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.action-card h2 {
+    font-size: 1.8em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.action-card ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.action-card li {
+    margin-bottom: 10px;
+}
     </style>
     
 </head>
@@ -198,45 +232,51 @@
 
         <h2>How to fold an 8 page Zine</h2>
         <img class="folding-img" src="CqyUq8.png" alt="Diagram showing how to fold an 8 page zine" />
-        
-        <h2>Genocide reports and statements (who says it's a genocide?)</h2>
-        <ul class="reports-list">
-            <li><a href="https://www.btselem.org/publications/202507_our_genocide">B'Tsalem (Israeli human rights group)</a></li>
-            <li><a href="https://www.amnesty.org/en/latest/news/2024/12/amnesty-international-concludes-israel-is-committing-genocide-against-palestinians-in-gaza/">Amnesty International</a></li>
-            <li><a href="https://www.hrw.org/news/2024/12/19/israels-crime-extermination-acts-genocide-gaza">Human Rights Watch</a></li>
-            <li><a href="https://www.un.org/unispal/document/a-hrc-59-23-from-economy-of-occupation-to-economy-of-genocide-report-special-rapporteur-francesca-albanese-palestine-2025/">UN Special Rapporteur</a></li>
-            <li><a href="https://www.youtube.com/watch?v=jyrbMOFJK34">Avi Shlaim, Israeli Historian</a></li>
-            <li><a href="https://web.archive.org/web/20250731173804/https://www.nytimes.com/2025/07/15/opinion/israel-gaza-holocaust-genocide-palestinians.html">Omer Bartov, Holocaust Scholar</a></li>
-            <li><a href="https://www.hrw.org/news/2024/01/26/gaza-world-court-orders-israel-prevent-genocide">International Court of Justice (ICJ, plausible genocide)</a></li>
-            <li><a href="https://www.phr.org.il/en/">Physicians for Human Rights (Israeli human rights group)</a></li>
-            <li><a href="https://www.prospectmagazine.co.uk/views/people/69831/ilan-pappe-in-a-genocide-there-are-no-two-sides">Ilan Pappé, Israeli Historian</a></li>
-            <li><a href="https://www.youtube.com/watch?v=X5kXCdzt_us">Peter Beinart, Journalist (interview with Jon Stewart)</a></li>
-            
-            <li>Many many others</li>
-        </ul>    
-        
-        <h2>Give (Even Small Amounts Help)</h2>
-        <ul class="reports-list">
+        <div class="action-sections">
+
+    <div class="action-card">
+        <h2>1. Give (Even Small Amounts Help)</h2>
+        <ul>
             <li><a href="https://www.cm2g.org" target="_blank">Christian Mission to Gaza (CM2G)</a> — Food, water, shelter from Christian families in Gaza.</li>
             <li><a href="https://www.pcrf.net" target="_blank">Palestine Children’s Relief Fund (PCRF)</a> — Medical aid, food, trauma care.</li>
             <li><a href="https://www.pleasurepie.org/gaza.html" target="_blank">Gaza Survival Crowdfunding (via Pleasure Pie)</a> — Direct mutual aid to Gazan educators and families.</li>
         </ul>
-        
-        <h2>Join Direct Action / Advocacy Groups</h2>
-        <ul class="reports-list">
+    </div>
+
+    <div class="action-card">
+        <h2>2. Join Direct Action / Advocacy Groups</h2>
+        <ul>
             <li><a href="https://www.jewishvoiceforpeace.org" target="_blank">Jewish Voice for Peace</a></li>
             <li><a href="https://www.ifnotnowmovement.org" target="_blank">IfNotNow</a></li>
             <li><a href="https://uscpr.org" target="_blank">US Campaign for Palestinian Rights</a></li>
             <li><a href="https://palsolidarity.org" target="_blank">International Solidarity Movement</a></li>
             <li><a href="https://bdsmovement.net/" target="_blank">Boycott, Divest, Sanctions (BDS) Movement</a></li>
         </ul>
-        
-        <h2>Buy and Share Solidarity Materials</h2>
-        <ul class="reports-list">
+    </div>
+
+    <div class="action-card">
+        <h2>3. Buy and Share Solidarity Materials</h2>
+        <ul>
             <li><a href="https://wearthepeace.com/products/palestine-bracelet" target="_blank">Palestine map bracelet (from Wear the Peace)</a> — Donates meals.</li>
             <li><a href="https://www.etsy.com/search?q=palestine+solidarity" target="_blank">Solidarity stickers and keffiyeh gear on Etsy</a></li>
             <li><a href="https://pleasurepie.org/articles/free-zines-about-palestine" target="_blank">Free Palestine zines (Pleasure Pie)</a></li>
         </ul>
+    </div>
+
+    <div class="action-card">
+        <h2>4. Weekly Action Plan</h2>
+        <ul>
+            <li><strong>Mon</strong> – Donate $5–50 to a charity</li>
+            <li><strong>Tues</strong> – Read a Palestinian story or watch a short doc</li>
+            <li><strong>Wed</strong> – Wear a bracelet or keffiyeh + carry a zine to give away</li>
+            <li><strong>Thurs</strong> – Contact a representative to demand ceasefire / stop arms</li>
+            <li><strong>Fri</strong> – Share a post, quote, or zine from a Gazan voice</li>
+            <li><strong>Sat</strong> – Go to a protest, vigil, or discussion</li>
+            <li><strong>Sun</strong> – Rest, reflect, plan next week, and encourage one friend</li>
+        </ul>
+    </div>
+
+</div>
 
     </div>
 
