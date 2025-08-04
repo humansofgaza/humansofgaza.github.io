@@ -205,6 +205,26 @@
 .action-card li {
     margin-bottom: 10px;
 }
+
+.zine-row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: stretch;
+    margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+    .zine-row {
+        flex-direction: row;
+    }
+
+    .zine-item {
+        flex: 1;
+        max-width: 48%;
+    }
+}
     </style>
     
 </head>
@@ -212,6 +232,7 @@
     <div class="container">
         <h1>Humans of Gaza</h1>
         <h2>Zines</h2>
+        <div class="zine-row">
         <div class="zine-item">
             <a href="Gaza (single page foldable 8 part booklet).pdf">How Can I Help the Humans of Gaza?</a>
             <button class="pdf">Preview Zine</button>
@@ -219,6 +240,7 @@
         <div class="zine-item">
             <a href="Wait are we doing a genocide.pdf">Wait... are we doing a genocide in Gaza?</a>
             <button class="pdf">Preview Zine</button>
+        </div>
         </div>
         
         <div id="preview" style="display: none;">
